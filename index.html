@@ -581,87 +581,60 @@ html[data-theme="light"] .academy .team-card-wide .team-person span {
 }
 
 
-/* V6.3 — Gojo animated cursor + gold touch glow (self-contained). */
-.gojo-cursor{
+/* V6.4: reliable Gojo cursor for desktop, hybrid Windows laptops and reduced-motion settings. */
+.gojo-cursor {
   position:fixed;left:0;top:0;z-index:2147483000;pointer-events:none;
-  width:1px;height:1px;opacity:0;display:none;will-change:transform;
-  transition:opacity .14s ease;
+  width:1px;height:1px;display:none;opacity:0;will-change:transform;
+  transition:opacity .10s linear;
 }
 .gojo-cursor.is-visible{opacity:1}
 .gojo-cursor__sprite{
-  position:absolute;left:0;top:0;width:64px;height:64px;max-width:none!important;object-fit:contain;
-  pointer-events:none;will-change:opacity,transform;
-  filter:drop-shadow(0 0 4px rgba(255,199,61,.50)) drop-shadow(0 0 10px rgba(255,191,56,.22));
-  transition:opacity .14s ease,transform .19s ease,filter .18s ease;
+  position:absolute;left:0;top:0;width:64px;height:64px;max-width:none!important;
+  object-fit:contain;pointer-events:none;transition:opacity .13s ease,transform .15s ease;
+  filter:drop-shadow(0 0 4px rgba(255,192,46,.7)) drop-shadow(0 0 10px rgba(255,186,32,.36));
 }
-.gojo-cursor__arrow{transform:translate(-6px,-1px);opacity:1}
-.gojo-cursor__hand{transform:translate(-10px,-5px) scale(.83);opacity:0}
-.gojo-cursor.is-interactive .gojo-cursor__arrow{opacity:0;transform:translate(-6px,-1px) scale(.85)}
-.gojo-cursor.is-interactive .gojo-cursor__hand{
-  opacity:1;transform:translate(-10px,-5px) scale(1);
-  filter:drop-shadow(0 0 6px rgba(255,213,84,.88)) drop-shadow(0 0 17px rgba(255,182,44,.48));
-}
+.gojo-cursor__arrow{opacity:1;transform:translate(-6px,-1px)}
+.gojo-cursor__hand{opacity:0;transform:translate(-16px,-7px) scale(.84)}
+.gojo-cursor.is-interactive .gojo-cursor__arrow{opacity:0;transform:translate(-6px,-1px) scale(.84)}
+.gojo-cursor.is-interactive .gojo-cursor__hand{opacity:1;transform:translate(-16px,-7px) scale(1)}
 .gojo-cursor__aura{
-  position:absolute;left:0;top:0;width:85px;height:85px;border-radius:50%;
-  transform:translate(-50%,-50%) scale(.8);opacity:.48;
-  background:radial-gradient(circle,rgba(255,221,126,.25) 0%,rgba(255,188,37,.14) 31%,rgba(255,185,42,0) 72%);
-  box-shadow:0 0 26px rgba(255,189,54,.12);
-  transition:transform .19s ease,opacity .19s ease,box-shadow .19s ease;
+  position:absolute;left:0;top:0;width:68px;height:68px;border-radius:50%;
+  transform:translate(-50%,-50%) scale(.72);opacity:.38;
+  background:radial-gradient(circle,rgba(255,211,90,.31),rgba(255,176,30,.10) 37%,transparent 72%);
+  box-shadow:0 0 20px rgba(255,184,29,.10);transition:transform .18s ease,opacity .18s ease,box-shadow .18s ease;
 }
-.gojo-cursor.is-interactive .gojo-cursor__aura{
-  opacity:.95;transform:translate(-50%,-50%) scale(1.22);
-  box-shadow:0 0 42px rgba(255,188,40,.30);
-}
-.gojo-cursor.is-pressed .gojo-cursor__aura{
-  opacity:1;transform:translate(-50%,-50%) scale(1.46);
-  box-shadow:0 0 50px rgba(255,187,32,.45);
-}
+.gojo-cursor.is-interactive .gojo-cursor__aura{opacity:.8;transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 26px rgba(255,180,30,.32)}
+.gojo-cursor.is-pressed .gojo-cursor__aura{opacity:1;transform:translate(-50%,-50%) scale(1.4)}
 .gojo-gold-effects{position:fixed;inset:0;z-index:2147482999;pointer-events:none;overflow:hidden;contain:layout style}
 .gojo-gold-ring{
-  position:absolute;left:0;top:0;width:16px;height:16px;border:2px solid #ffce55;
-  border-radius:50%;box-shadow:0 0 9px #ffc445,0 0 24px rgba(255,180,29,.55),inset 0 0 9px rgba(255,213,94,.45);
-  transform:translate(-50%,-50%) scale(.25);opacity:0;
-  animation:gojo-gold-burst .68s cubic-bezier(.15,.62,.22,1) both;
+ position:absolute;left:0;top:0;width:16px;height:16px;border:2px solid #ffce55;border-radius:50%;
+ box-shadow:0 0 9px #ffc445,0 0 24px rgba(255,180,29,.55),inset 0 0 9px rgba(255,213,94,.45);
+ transform:translate(-50%,-50%) scale(.25);opacity:0;animation:gojo-gold-burst .68s cubic-bezier(.15,.62,.22,1) both;
 }
 .gojo-gold-spark{
-  position:absolute;left:0;top:0;width:5px;height:5px;border-radius:50%;
-  background:#ffe5a2;box-shadow:0 0 6px #ffc84c,0 0 14px #e8a527;
-  transform:translate(-50%,-50%);animation:gojo-gold-spark .6s ease-out both;
+ position:absolute;left:0;top:0;width:5px;height:5px;border-radius:50%;background:#ffe5a2;
+ box-shadow:0 0 6px #ffc84c,0 0 14px #e8a527;transform:translate(-50%,-50%);animation:gojo-gold-spark .6s ease-out both;
 }
-@keyframes gojo-gold-burst{
-  0%{opacity:1;transform:translate(-50%,-50%) scale(.3)}
-  52%{opacity:.94}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(6.3)}
+@keyframes gojo-gold-burst{0%{opacity:1;transform:translate(-50%,-50%) scale(.3)}52%{opacity:.94}100%{opacity:0;transform:translate(-50%,-50%) scale(6.3)}}
+@keyframes gojo-gold-spark{0%{opacity:1;transform:translate(-50%,-50%) translate(0,0) scale(1.1)}100%{opacity:0;transform:translate(-50%,-50%) translate(var(--gojo-x),var(--gojo-y)) scale(.2)}}
+/* Native image cursors are a fallback even if JavaScript, animated WebP or mouse detection fails. */
+@media (any-pointer:fine){
+ html:not(.gojo-custom-ready) body, html:not(.gojo-custom-ready) body *:not(input):not(textarea):not(select):not([contenteditable]){
+  cursor:url('data:image/png;base64,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') 10 9,auto!important;
+ }
+ html:not(.gojo-custom-ready) :is(a,button,summary,[role="button"],[data-clickable],label[for]){
+  cursor:url('data:image/png;base64,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') 20 12,pointer!important;
+ }
+ html.gojo-custom-ready body,html.gojo-custom-ready body *:not(input):not(textarea):not(select):not([contenteditable]){cursor:none!important}
+ html.gojo-custom-ready .gojo-cursor{display:block}
 }
-@keyframes gojo-gold-spark{
-  0%{opacity:1;transform:translate(-50%,-50%) translate(0,0) scale(1.1)}
-  100%{opacity:0;transform:translate(-50%,-50%) translate(var(--gojo-x),var(--gojo-y)) scale(.2)}
-}
-/* Desktop only: hide the system pointer once the custom cursor is ready. */
-@media (hover:hover) and (pointer:fine){
-  html.gojo-cursor-active *:not(input):not(textarea):not(select):not([contenteditable]):not([contenteditable] *){
-    cursor:none!important;
-  }
-  html.gojo-cursor-active .gojo-cursor{display:block}
-  html.gojo-cursor-active :is(a,button,[role="button"],summary):hover{
-    filter:drop-shadow(0 0 6px rgba(255,195,56,.25));
-  }
-  html.gojo-cursor-active :is(a,button,[role="button"],summary):focus-visible{
-    outline:2px solid #ffd465;outline-offset:4px;
-  }
-}
-/* The site's original ambient pointer glow becomes warm gold. */
-@media (hover:hover) and (pointer:fine){
-  .cursor-glow{z-index:1;opacity:.48;width:310px;height:310px;
-    background:radial-gradient(circle,rgba(255,198,67,.17),rgba(255,187,39,.06) 36%,transparent 68%)}
-}
-@media (hover:none),(pointer:coarse){.gojo-cursor,.cursor-glow{display:none!important}}
-@media (prefers-reduced-motion:reduce){
-  .gojo-cursor{display:none!important}
-  .gojo-gold-ring,.gojo-gold-spark{animation-duration:.15s!important}
-}
+html.gojo-custom-ready :is(a,button,summary,[role="button"]):focus-visible{outline:2px solid #ffd465;outline-offset:4px}
+@media (any-pointer:fine){.cursor-glow{z-index:1;opacity:.38;width:260px;height:260px;background:radial-gradient(circle,rgba(255,198,67,.16),rgba(255,187,39,.05) 36%,transparent 68%)}}
+@media (any-pointer:coarse) and (any-hover:none){.gojo-cursor,.cursor-glow{display:none!important}}
+@media (prefers-reduced-motion:reduce){.gojo-cursor{display:none!important}.gojo-gold-ring,.gojo-gold-spark{animation-duration:.16s!important}}
 
 </style>
+<!-- Portfolio V6.4: browser-compatible Gojo cursor fallback and animated overlay. -->
 </head>
 <body><div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
 <div aria-hidden="true" class="noise"></div>
@@ -997,90 +970,87 @@ if('IntersectionObserver' in window){
  document.querySelectorAll('section[id]').forEach(s=>sectionObserver.observe(s));
 }
 
-// V6.3 — the original .ani arrow is converted into an animated WebP for browsers.
-// The original .cur energy hand is converted to PNG for interactive targets.
-(() => {
-  const cursor = document.getElementById('gojoCursor');
-  const effects = document.getElementById('gojoGoldEffects');
-  const arrow = document.getElementById('gojoCursorArrow');
-  if (!cursor || !effects || !arrow) return;
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const interactiveSelector = 'a, button, summary, select, [role="button"], [data-clickable], input[type="button"], input[type="submit"], label[for]';
-  const textSelector = 'input:not([type="button"]):not([type="submit"]), textarea, select, [contenteditable]';
-  let enabled = false;
-  let raf = 0;
-  let pointX = -100, pointY = -100;
-  const setMode = () => {
-    enabled = finePointer.matches && !reducedMotion.matches;
-    document.documentElement.classList.toggle('gojo-cursor-active', enabled);
-    if (!enabled) cursor.classList.remove('is-visible', 'is-interactive', 'is-pressed');
-  };
-  setMode();
-  if (finePointer.addEventListener) finePointer.addEventListener('change', setMode);
-  if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', setMode);
-  // Animated WebP is supported by modern Chrome, Edge, Firefox, and Safari.
-  // If an image cannot load, restore the normal cursor instead of hiding it.
-  arrow.addEventListener('error', () => {
-    enabled = false;
-    document.documentElement.classList.remove('gojo-cursor-active');
-    cursor.classList.remove('is-visible');
-  });
-  const paint = () => {
-    cursor.style.transform = `translate3d(${pointX}px, ${pointY}px, 0)`;
-    raf = 0;
-  };
-  document.addEventListener('pointermove', (event) => {
-    if (!enabled || event.pointerType === 'touch') return;
-    pointX = event.clientX; pointY = event.clientY;
-    if (!raf) raf = requestAnimationFrame(paint);
-    const el = event.target instanceof Element ? event.target : null;
-    const isText = !!el?.closest(textSelector);
-    cursor.classList.toggle('is-visible', !isText);
-    cursor.classList.toggle('is-interactive', !!el?.closest(interactiveSelector) && !isText);
-  }, {passive: true});
-  document.addEventListener('pointerover', (event) => {
-    if (!enabled || event.pointerType === 'touch') return;
-    const el = event.target instanceof Element ? event.target : null;
-    cursor.classList.toggle('is-interactive', !!el?.closest(interactiveSelector));
-  }, {passive: true});
-  const hide = () => cursor.classList.remove('is-visible', 'is-pressed');
-  document.addEventListener('pointerout', (event) => {
-    if (event.relatedTarget === null) hide();
-  }, {passive: true});
-  window.addEventListener('blur', hide);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) hide(); });
-  function burst(x, y, withSparks) {
-    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
-    const ring = document.createElement('span');
-    ring.className = 'gojo-gold-ring';
-    ring.style.left = x + 'px';
-    ring.style.top = y + 'px';
-    effects.appendChild(ring);
-    ring.addEventListener('animationend', () => ring.remove(), {once:true});
-    if (withSparks && !reducedMotion.matches) {
-      for (let i = 0; i < 7; i++) {
-        const spark = document.createElement('span');
-        spark.className = 'gojo-gold-spark';
-        spark.style.left = x + 'px'; spark.style.top = y + 'px';
-        const angle = i * Math.PI * 2 / 7;
-        const distance = 25 + (i % 3) * 8;
-        spark.style.setProperty('--gojo-x', (Math.cos(angle) * distance).toFixed(1) + 'px');
-        spark.style.setProperty('--gojo-y', (Math.sin(angle) * distance).toFixed(1) + 'px');
-        effects.appendChild(spark);
-        spark.addEventListener('animationend', () => spark.remove(), {once:true});
-      }
-    }
-  }
-  document.addEventListener('pointerdown', (event) => {
-    if (event.pointerType === 'mouse' && event.button !== 0) return;
-    if (enabled && event.pointerType !== 'touch') cursor.classList.add('is-pressed');
-    burst(event.clientX, event.clientY, true);
-  }, {passive:true});
-  document.addEventListener('pointerup', () => cursor.classList.remove('is-pressed'), {passive:true});
-  document.addEventListener('pointercancel', () => cursor.classList.remove('is-pressed'), {passive:true});
-})();
+
 
 </script>
+
+<script>
+/* V6.4 cursor controller: independent from the rest of the portfolio scripts. */
+(() => {
+  function initGojo() {
+    const cursor=document.getElementById('gojoCursor');
+    const arrow=document.getElementById('gojoCursorArrow');
+    const hand=cursor?.querySelector('.gojo-cursor__hand');
+    const effects=document.getElementById('gojoGoldEffects');
+    if(!cursor||!arrow||!hand||!effects)return;
+    const html=document.documentElement;
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const fine=window.matchMedia('(any-pointer: fine)');
+    const interactives='a,button,summary,select,[role="button"],[data-clickable],input[type="button"],input[type="submit"],label[for],.proof-card img';
+    const textfields='input:not([type="button"]):not([type="submit"]),textarea,select,[contenteditable]';
+    let assetsReady=false,active=false,lastX=-200,lastY=-200,frame=0,touchBlockUntil=0;
+    window.__gojoCursorStatus={version:'6.4',assetsReady:false,mode:'native-fallback'};
+    function refreshAssets(){
+      assetsReady=arrow.complete&&arrow.naturalWidth>0&&hand.complete&&hand.naturalWidth>0;
+      window.__gojoCursorStatus.assetsReady=assetsReady;
+      if(!assetsReady)deactivate();
+    }
+    function deactivate(){
+      active=false;html.classList.remove('gojo-custom-ready');cursor.classList.remove('is-visible','is-interactive','is-pressed');
+      window.__gojoCursorStatus.mode='native-fallback';
+    }
+    arrow.addEventListener('load',refreshAssets);arrow.addEventListener('error',deactivate);
+    hand.addEventListener('load',refreshAssets);hand.addEventListener('error',deactivate);
+    refreshAssets();
+    function updatePoint(){cursor.style.transform=`translate3d(${lastX}px,${lastY}px,0)`;frame=0;}
+    function onMouseMove(e){
+      // Use real mouse movement instead of relying on primary-pointer media queries.
+      // This works on Windows touchscreen laptops with an attached mouse or trackpad.
+      if(performance.now()<touchBlockUntil||e.sourceCapabilities?.firesTouchEvents)return;
+      if(!fine.matches||reduced.matches||!assetsReady)return;
+      lastX=e.clientX;lastY=e.clientY;
+      if(!active){active=true;html.classList.add('gojo-custom-ready');window.__gojoCursorStatus.mode='animated';}
+      if(!frame)frame=requestAnimationFrame(updatePoint);
+      const target=e.target instanceof Element?e.target:null;
+      const isText=!!target?.closest(textfields);
+      cursor.classList.toggle('is-visible',!isText);
+      cursor.classList.toggle('is-interactive',!isText&&!!target?.closest(interactives));
+    }
+    // Both mousemove and pointermove are supported; mousemove is reliable on hybrid devices.
+    document.addEventListener('mousemove',onMouseMove,{passive:true});
+    document.addEventListener('pointermove',e=>{if(e.pointerType==='mouse')onMouseMove(e);},{passive:true});
+    document.addEventListener('mouseout',e=>{if(!e.relatedTarget)cursor.classList.remove('is-visible','is-pressed');},{passive:true});
+    window.addEventListener('blur',()=>cursor.classList.remove('is-visible','is-pressed'));
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)cursor.classList.remove('is-visible','is-pressed');});
+    if(fine.addEventListener)fine.addEventListener('change',()=>{if(!fine.matches)deactivate();});
+    if(reduced.addEventListener)reduced.addEventListener('change',()=>{if(reduced.matches)deactivate();});
+    function burst(x,y){
+      if(!Number.isFinite(x)||!Number.isFinite(y))return;
+      const ring=document.createElement('span');ring.className='gojo-gold-ring';
+      ring.style.left=x+'px';ring.style.top=y+'px';effects.appendChild(ring);
+      setTimeout(()=>ring.remove(),900);
+      if(!reduced.matches)for(let i=0;i<7;i++){
+        const spark=document.createElement('span');spark.className='gojo-gold-spark';
+        spark.style.left=x+'px';spark.style.top=y+'px';
+        const angle=i*Math.PI*2/7,dist=24+(i%3)*8;
+        spark.style.setProperty('--gojo-x',(Math.cos(angle)*dist).toFixed(1)+'px');
+        spark.style.setProperty('--gojo-y',(Math.sin(angle)*dist).toFixed(1)+'px');
+        effects.appendChild(spark);setTimeout(()=>spark.remove(),900);
+      }
+    }
+    document.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='mouse'&&e.button!==0)return;
+      if(e.pointerType==='touch'){touchBlockUntil=performance.now()+900;deactivate();}
+      if(active&&e.pointerType!=='touch')cursor.classList.add('is-pressed');
+      burst(e.clientX,e.clientY);
+    },{passive:true});
+    document.addEventListener('pointerup',()=>cursor.classList.remove('is-pressed'),{passive:true});
+    document.addEventListener('pointercancel',()=>cursor.classList.remove('is-pressed'),{passive:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initGojo,{once:true});
+  else initGojo();
+})();
+</script>
+
 </body>
 </html>
